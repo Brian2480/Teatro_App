@@ -1,0 +1,11 @@
+
+{% macro render_file(field)%}
+    {{ field(class='form-control mt-3')}}
+{% endmacro %}
+
+
+{% macro render_button(field)%}
+    <div class="text-center">
+        {{ field(class='btn btn-primary mt-3')}}
+    </div>
+{% endmacro %}

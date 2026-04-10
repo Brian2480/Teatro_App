@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% block title %}- Info{% endblock %}
+
+{% block content %}
+
+
+<header class="container-fluid">
+    <div class="row d-flex justify-content-center my-5">
+        <div class="col-6 col-md-3">
+            <a href="{{ url_for('public.index') }}"><img class="img-fluid" src="{{ url_for( 'static' , filename= 'img/Caras.png')}}" alt=""></a>
+        </div>
+    </div>
+</header>
+
+<h1 class="text-white text-center">Información</h1>
+
+<main class="container my-auto">
+    <div class="row d-flex justify-content-center">
+        <div class="col-10 col-md-6 col-lg-6">
+            <div class="accordion mt-4 " id="preguntas">
+                <!-- Elemento #1 -->
+                <div class="accordion-item bg-dark text-white">
+                    <h3 class="accordion-header" id="encabezado-1">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#elemento-1" aria-expanded="false" aria-controls="elemento-1">
+                            Me equivoque en un dato
+                        </button>
+                    </h3>
+
+                    <div id="elemento-1" class="accordion-collapse collapse" aria-labelledby="encabezado-1"
+                        data-bs-parent="#preguntas">
+                        <div class="accordion-body">
+                            <p>
+                                No te preocupes puedes volver a realizar el registro sin ningún problema, pero te
+                                recomendamos que antes de llenar los campos verifiques la información con tus compañeros
+                                de grupo.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Elemento #2-->
+                <div class="accordion-item bg-dark text-white">
+                    <h3 class="accordion-header" id="encabezado-2">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#elemento-2" aria-expanded="false" aria-controls="elemento-2">
+                            Presentar mas de un Qr...
+                        </button>
+                    </h3>
+
+                    <div id="elemento-2" class="accordion-collapse collapse" aria-labelledby="encabezado-2"
+                        data-bs-parent="#preguntas">
+                        <div class="accordion-body">
+                            <p>
+                                Puedes presentar el Qr de otros compañeros en la taquilla el día del evento para registrar
+                                su asistencia.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Elemento #3-->
+                <div class="accordion-item bg-dark text-white">
+                    <h3 class="accordion-header" id="encabezado-3">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#elemento-3" aria-expanded="false" aria-controls="elemento-3">
+                            Función del registro
+                        </button>
+                    </h3>
+
+                    <div id="elemento-3" class="accordion-collapse collapse" aria-labelledby="encabezado-3"
+                        data-bs-parent="#preguntas">
+                        <div class="accordion-body">
+                            <p>
+                                Al presentar tu Qr en ventanilla se te dara un ticket el cual tendrá un folio que
+                                estará vinculado a tu nombre en nuestro sistema con el fin de garantizar la
+                                asistencia del alumno, así como la autenticidad por lo cual si lo pierdes basta
+                                con que recuerdes tu número de folio.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <a href="{{url_for('public.register_view')}}" role="button" class="btn btn-primary">Entendido</a>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

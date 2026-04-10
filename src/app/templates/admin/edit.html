@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <div class="row my-5 text-center text-white">
+        <h1>Editar Plantel: {{ plantel.plantel }}</h1>
+    </div>
+
+    <form method="POST"> <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card bg-dark text-white shadow mb-4">
+                    <div class="card-header"><h5>Nombre del Plantel</h5></div>
+                    <div class="card-body">
+                        <input type="text" name="plantel" class="form-control" value="{{ plantel.plantel }}" required>
+                    </div>
+                </div>
+
+                <div class="card bg-dark text-white shadow">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">Grupos</h5>
+                        <button type="button" id="add-group" class="btn btn-sm btn-success">+ Añadir</button>
+                    </div>
+                    <div class="card-body" id="contenedor-grupos">
+                        {% for group in plantel.grupos %}
+                        <div class="row g-2 mb-2 grupo-item">
+                            <div class="col">
+                                <input type="text" name="name_group[]" class="form-control" value="{{ group.name_group }}" required>
+                            </div>
+                            <div class="col-auto">
+                                <button type="button" class="btn btn-danger btn-remove" {% if loop.first and plantel.grupos|length == 1 %}style="display:none;"{% endif %}>
+                                    <i class="bi bi-x"></i>
+                                </button>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="mt-4 text-center">
+                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                    <a href="{{ url_for('admin_panel.show_groups') }}" class="btn btn-secondary">Cancelar</a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const contenedor = document.getElementById('contenedor-grupos');
+        const btnAdd = document.getElementById('add-group');
+
+        btnAdd.addEventListener('click', () => {
+            const filas = document.querySelectorAll('.grupo-item');
+            const nuevaFila = filas[0].cloneNode(true);
+            nuevaFila.querySelector('input').value = '';
+            nuevaFila.querySelector('.btn-remove').style.display = 'block';
+            contenedor.appendChild(nuevaFila);
+        });
+
+        contenedor.addEventListener('click', (e) => {
+            if (e.target.closest('.btn-remove')) {
+                const filas = document.querySelectorAll('.grupo-item');
+                if (filas.length > 1) {
+                    e.target.closest('.grupo-item').remove();
+                }
+            }
+        });
+    });
+</script>
+{% endblock %}

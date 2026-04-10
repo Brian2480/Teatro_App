@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block title %}- Principal{% endblock %}
+
+{% block content %}
+
+
+<header class="container-fluid">
+    <div class="row d-flex justify-content-center my-5">
+        <div class="col-6 col-md-3">
+            <a href=""><img class="img-fluid" src="{{ url_for( 'static' , filename= 'img/Caras.png')}}" alt=""></a>
+        </div>
+    </div>
+</header>
+
+<h1 class="text-white text-center">REGISTRO</h1>
+
+<main class="container my-0">
+    <form action="{{url_for('public.process_register')}}" method="post">
+        {{ form.hidden_tag() }}
+        <div class="row justify-content-center">
+            <div class="col-10">
+                <div class="mb-3">
+                    {{ form.student.label(class="text-white")}}
+                    {{ form.student(class="form-control" , oninput="this.value =
+                                    removeAccents(this.value.toUpperCase());") }}
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-10">
+                <div class="mb-3">
+                    {{ form.plantel.label(class="text-white") }}
+                    {{ form.plantel(class="form-control", id="select-plantel") }}
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-10">
+                <div class="mb-4">
+                    {{ form.grupo.label(class="text-white") }}
+                    {{ form.grupo(class="form-control", id="select-grupo") }}
+                </div>
+            </div>
+        </div>
+        <div class="text-center">
+            {{ form.submit(class='btn btn-primary') }}
+        </div>
+    </form>
+</main>
+
+
+<script>
+    document.getElementById('select-plantel').addEventListener('change', function () {
+        const plantelId = this.value;
+        const selectGrupo = document.getElementById('select-grupo');
+
+        if (!plantelId || plantelId == "0") {
+            selectGrupo.innerHTML = '<option value="0">-- Selecciona un plantel primero --</option>';
+            return;
+        }
+
+        // Fíjate en la URL: incluye /public/
+        fetch(`/get_groups_by_plantel/${plantelId}`)
+            .then(response => response.json())
+            .then(data => {
+                selectGrupo.innerHTML = '<option value="0">-- Selecciona Grupo --</option>';
+                data.forEach(g => {
+                    let opt = document.createElement('option');
+                    opt.value = g.id;
+                    opt.textContent = g.name;
+                    selectGrupo.appendChild(opt);
+                });
+            });
+    });
+</script>
+
+<script>
+    function removeAccents(str) {
+        return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    }
+</script>
+
+{% endblock %}

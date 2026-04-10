@@ -1,0 +1,135 @@
+{% extends 'base.html'%}
+{% block title %}- Panel{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row my-5">
+        <div class="col-12 text-center text-white">
+            <h1>GRUPOS</h1>
+        </div>
+        <div class="col-12 text-center  text-white">
+            <h3>Registre los planteles y grupos</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <form action="{{url_for('admin_panel.save_groups')}}" method="POST" id="plantel-form">
+            <div class="d-flex flex-column align-items-center">
+                <div class="col-4">
+                    <div class="card bg-dark shadow mb-4">
+                        <div class="card-header bg-dark text-white">
+                            <h5 class="mb-0">Datos del Plantel</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <input type="text" name="plantel" id="plantel" class="form-control"
+                                    placeholder="Plantel" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="card bg-dark shadow">
+                        <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">Registro de Grupos</h5>
+                            <button type="button" id="add-group" class="btn btn-sm btn-success">+ Agregar Grupo</button>
+                        </div>
+                        <div class="card-body" id="contenedor-grupos">
+                            <div class="row g-2 mb-2 grupo-item">
+                                <div class="col">
+                                    <input type="text" name="name_group[]" class="form-control"
+                                        placeholder="Ingresa Grupo" required>
+                                </div>
+                                <div class="col-auto">
+                                    <button type="button" class="btn btn-danger btn-remove" style="display:none;">
+                                        <i class="bi bi-trash"></i> Eliminar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-primary shadow mb-3">Registrar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-10 col-md-5 mt-3">
+            {% include 'partials/alert.html' %}
+        </div>
+    </div>
+
+    {% for plantel in plantels %}
+    <div class="row text-white mt-3">
+        <div class="col">
+            <div class="card bg-dark text-white shadow ">
+                <div class="card-header">
+                    <div class="card-title"> <strong>{{plantel.plantel}}</strong> </div>
+                </div>
+                <div class="card-body">
+                    {% for group in plantel.grupos %}
+                    {{ group.name_group }},
+                    {% endfor %}
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex gap-2">
+                        <form action="{{url_for('admin_panel.delete_groups', plantel_id=plantel.id)}}" , method="post">
+                            <button class="btn btn-sm btn-danger">Eliminar</button>
+                        </form>
+
+                        <a href="{{ url_for('admin_panel.edit_groups', plantel_id=plantel.id) }}"
+                            class="btn btn-sm btn-primary">
+                            Editar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
+
+
+<script>
+    function removeAccents(str) {
+        return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    }
+</script>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const contenedor = document.getElementById('contenedor-grupos');
+        const btnAdd = document.getElementById('add-group');
+
+        // Función para agregar fila
+        btnAdd.addEventListener('click', () => {
+            const filas = document.querySelectorAll('.grupo-item');
+            const nuevaFila = filas[0].cloneNode(true); // Clonamos la primera fila
+
+            // Limpiar el input clonado
+            const input = nuevaFila.querySelector('input');
+            input.value = '';
+
+            // Mostrar y configurar el botón de eliminar
+            const btnDelete = nuevaFila.querySelector('.btn-remove');
+            btnDelete.style.display = 'block';
+
+            contenedor.appendChild(nuevaFila);
+        });
+
+        // Delegación de eventos para eliminar fila
+        contenedor.addEventListener('click', (e) => {
+            if (e.target.classList.contains('btn-remove') || e.target.closest('.btn-remove')) {
+                const fila = e.target.closest('.grupo-item');
+                fila.remove();
+            }
+        });
+    });
+</script>
+{% endblock %}

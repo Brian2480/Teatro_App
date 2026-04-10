@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}- Principal{% endblock %}
+
+{% block content %}
+
+
+<header class="container-fluid">
+    <div class="row d-flex justify-content-center my-5">
+        <div class="col-6 col-md-3">
+            <a href=""><img class="img-fluid" src="{{ url_for( 'static' , filename= 'img/Caras.png')}}"
+                    alt=""></a>
+        </div>
+    </div>
+</header>
+
+<h1 class="text-white text-center">CUESTIONARIOS</h1>
+
+<main class="container my-0">
+    {% for q in questionnaries %}
+    <div class="row justify-content-center mt-3">
+        <div class="col-5">
+            <div class="card bg-dark card-body text-white">
+                <div class="d-flex flex-column justify-content-center align-items-center" >
+                    <div>
+                        <strong>{{ q.file_name }}</strong>
+                    </div>
+                    <div class="mt-2">
+                    {% set url_final = q.pdf_url.replace('/upload/' , '/upload/fl_attachment/') %}
+                        <a href="{{ url_final }}" class="btn btn-primary btn-sm btn-download">Descargar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</main>
+{% endblock %}

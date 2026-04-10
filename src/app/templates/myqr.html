@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}- Mi Qr{% endblock %}
+
+{% block content %}
+
+<main class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6 text-center shadow-lg p-4 rounded bg-dark">
+            <h1 class="text-success mb-3">¡Registro Completado!</h1>
+            <div class="bg-white p-3 d-inline-block rounded mb-4">
+                <img src="{{ registro.qr_url }}" alt="Código QR de Acceso" class="img-fluid" style="max-height: 300px;">
+            </div>
+
+            <div class="d-grid gap-2">
+                <a href="{{ registro.qr_url.replace('/upload/', '/upload/fl_attachment/') }}"
+                    download="QR_Acceso_{{ registro.student.replace(' ', '_') }}.png" class="btn btn-success btn-lg">
+                    <i class="fas fa-download"></i> Descargar mi QR
+                </a>
+
+                <a href="{{ url_for('public.index') }}" class="btn btn-outline-primary">
+                    Volver al Inicio
+                </a>
+            </div>
+
+            <p class="text-white mt-3 small">
+                * Presenta este código QR al llegar al evento.
+            </p>
+        </div>
+    </div>
+</main>
+{% endblock %}

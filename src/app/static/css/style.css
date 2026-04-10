@@ -1,0 +1,14 @@
+/* Estilo para el link que está activo */
+.nav-pills .nav-link.active, 
+.nav-link.active {
+    background-color: #495057 !important; /* Gris oscuro fuerte */
+    color: white !important;              /* Texto blanco para que resalte */
+    font-weight: 600;                     /* Un poco más de grosor */
+    border-radius: 8px;                   /* Bordes redondeados para estética */
+}
+
+/* Opcional: un gris intermedio cuando pasas el mouse (hover) */
+.nav-link:hover:not(.active) {
+    background-color: #e9ecef; 
+    color: #212529;
+}
