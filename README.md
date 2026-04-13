@@ -15,6 +15,9 @@ Para tener una copia local, sigue estos pasos:
 3. `pip install -r requirements.txt`
 
 ## 📸 Demo
+| Vista de Usuario | Panel de Administración |
+| :---: | :---: |
+| ![Inicio](src/app/static/img/registro.jpg) | ![Admin](src/app/static/img/crear grupo.jpg) |
 ![Captura de pantalla de mi app](ruta/a/tu/imagen.png)
 
 ## ✒️ Autor
