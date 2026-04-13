@@ -1,7 +1,8 @@
 # Teatro_App
 
 Plataforma en la cual el usuario generara un Qr de acuerdo a los datos solicitados (Nombre,Plantel,Grupo) y en la cual 
-el administrador puede realizar el CRUD de los mismos, asi como subir archivos PDF con informacion que el usuario podra descargar.
+el administrador puede realizar el CRUD de los mismos, asi como llevar un conteo de personas registradas y subir 
+archivos PDF con informacion que el usuario podra descargar.
 
 ## 🛠️ Tecnologías
 * **Lenguaje:** Python 3.13.1
