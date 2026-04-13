@@ -18,7 +18,7 @@ Para tener una copia local, sigue estos pasos:
 | Vista de Usuario | Panel de Administración |
 | :---: | :---: |
 | ![Inicio](src/app/static/img/registro.jpg) | ![Admin](src/app/static/img/crear.jpg) |
-![Captura de pantalla de mi app](ruta/a/tu/imagen.png)
+
 
 ## ✒️ Autor
 * **Brian** - [Brian2480](https://github.com/Brian2489)
