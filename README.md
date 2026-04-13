@@ -17,7 +17,7 @@ Para tener una copia local, sigue estos pasos:
 ## 📸 Demo
 | Vista de Usuario | Panel de Administración |
 | :---: | :---: |
-| ![Inicio](src/app/static/img/registro.jpg) | ![Admin](src/app/static/img/crear%20grupo.jpg) |
+| ![Inicio](src/app/static/img/registro.jpg) | ![Admin](src/app/static/img/crear.jpg) |
 ![Captura de pantalla de mi app](ruta/a/tu/imagen.png)
 
 ## ✒️ Autor
