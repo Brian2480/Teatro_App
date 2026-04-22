@@ -1,4 +1,4 @@
-# Teatro_App
+# teatro-app
 
 Plataforma en la cual el usuario generara un Qr de acuerdo a los datos solicitados (Nombre,Plantel,Grupo) y en la cual 
 el administrador puede realizar el CRUD de los mismos, asi como llevar un conteo de personas registradas y subir 
